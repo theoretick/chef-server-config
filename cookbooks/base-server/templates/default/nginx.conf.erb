@@ -1,0 +1,18 @@
+worker_processes 1;
+
+error_log  /var/log/nginx/error.log;
+pid        /var/run/nginx.pid;
+
+events {
+  worker_connections 1024;
+  accept_mutex off;
+  use epoll;
+}
+
+http {
+  server {
+    server_name foo.bar.org default;
+    root /var/www/myapp;
+    index index.html;
+  }
+}
